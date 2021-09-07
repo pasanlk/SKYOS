@@ -1,6 +1,7 @@
 #include "io.h"
 #include "pic.h"
 
+
 void pic_acknowledge(unsigned int interrupt)
 {
 	if (interrupt < PIC_1_OFFSET || interrupt > PIC_2_END) {
@@ -24,7 +25,7 @@ void pic_remap(int offset1, int offset2)
 	outb(PIC_1_DATA, 4);					// ICW3: tell Master PIC that there is a slave PIC at IRQ2 (0000 0100)
 	outb(PIC_2_DATA, 2);					// ICW3: tell Slave PIC its cascade identity (0000 0010)
 
-outb(PIC_1_DATA, PIC_ICW4_8086);
+	outb(PIC_1_DATA, PIC_ICW4_8086);
 	outb(PIC_2_DATA, PIC_ICW4_8086);
 
 	outb(PIC_1_DATA, 0xFD); // 1111 1101 - Enable IRQ 1 only (keyboard).
